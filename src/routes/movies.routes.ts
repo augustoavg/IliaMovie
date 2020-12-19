@@ -23,4 +23,12 @@ moviesRouter.get(
   moviesController.findOne,
 );
 
+moviesRouter.delete(
+  '/:movieId',
+  celebrate({
+    [Segments.PARAMS]: { movieId: Joi.string().required().strict(true) },
+  }),
+  moviesController.delete,
+);
+
 export default moviesRouter;
