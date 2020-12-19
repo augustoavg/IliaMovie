@@ -6,4 +6,6 @@ const moviesRouter = Router({ mergeParams: true });
 
 moviesRouter.post('/', moviesController.create);
 
+moviesRouter.get('/', moviesController.findAll);
+
 export default moviesRouter;
