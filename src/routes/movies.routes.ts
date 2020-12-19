@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import MoviesController from '../controllers/MoviesController';
+import MoviesTranslationsRouter from './moviesTranslations.routes';
 
 const moviesController = new MoviesController();
 const moviesRouter = Router({ mergeParams: true });
@@ -29,6 +30,14 @@ moviesRouter.delete(
     [Segments.PARAMS]: { movieId: Joi.string().required().strict(true) },
   }),
   moviesController.delete,
+);
+
+moviesRouter.use(
+  '/:movieId/translations',
+  celebrate({
+    [Segments.PARAMS]: { movieId: Joi.string().required().strict(true) },
+  }),
+  MoviesTranslationsRouter,
 );
 
 export default moviesRouter;
