@@ -31,9 +31,11 @@ class MoviesController {
   ): Promise<Response> {
     const { movieId } = request.params;
 
+    const id = parseInt(movieId, 10);
+
     const findOneMovie = new FindOneMovieService();
 
-    const movie = await findOneMovie.execute({ movieId });
+    const movie = await findOneMovie.execute({ movieId: id });
 
     return response.json(movie);
   }
