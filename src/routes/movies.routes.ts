@@ -24,6 +24,14 @@ moviesRouter.get(
   moviesController.findOne,
 );
 
+moviesRouter.put(
+  '/:movieId',
+  celebrate({
+    [Segments.PARAMS]: { movieId: Joi.string().required().strict(true) },
+  }),
+  moviesController.update,
+);
+
 moviesRouter.delete(
   '/:movieId',
   celebrate({
