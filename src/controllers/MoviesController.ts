@@ -3,6 +3,7 @@ import CreateMovieService from '../services/CreateMovieService';
 import FindAllMoviesService from '../services/FindAllMoviesService';
 import FindOneMovieService from '../services/FindOneMovieService';
 import DeleteMovieService from '../services/DeleteMovieService';
+import UpdateMovieService from '../services/UpdateMovieService';
 
 class MoviesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -51,6 +52,18 @@ class MoviesController {
     await deleteMovie.execute({ movieId: id });
 
     return response.json({ deleted: true });
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { movieId } = request.params;
+
+    const id = parseInt(movieId, 10);
+
+    const updateMovie = new UpdateMovieService();
+
+    const movie = await updateMovie.execute({ movieId: id });
+
+    return response.json(movie);
   }
 }
 
