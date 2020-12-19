@@ -2,7 +2,7 @@ import Movies, { IMoviesInterface } from '../schemas/Movies';
 import AppError from '../shared/errors/AppError';
 
 interface IRequestDTO {
-  movieId: string;
+  movieId: number;
 }
 
 class FindOneMoviesService {
