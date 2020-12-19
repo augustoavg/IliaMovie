@@ -10,10 +10,10 @@ import {
 
 export interface IMoviesInterface extends Document {
   id: string;
-  movieId: string;
+  movieId: number;
   adult: boolean;
   backdropPath: string | null;
-  belongsToCollection: [string];
+  belongsToCollection: Record<string, unknown> | null;
   budget: number;
   genres: IGenres[];
   homepage: string | null;
@@ -25,7 +25,7 @@ export interface IMoviesInterface extends Document {
   posterPath: string | null;
   productionCompanies: IProductionCompanies[];
   productionCountries: IProductionCountries[];
-  releaseDate: Date;
+  releaseDate: string | Date;
   revenue: number;
   runtime: number | null;
   spokenLanguage: ISpokenLanguages[];
@@ -44,7 +44,7 @@ const MoviesSchema = new Schema(
       type: String,
     },
     movieId: {
-      type: String,
+      type: Number,
       unique: true,
     },
     adult: {
