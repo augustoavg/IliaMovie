@@ -10,7 +10,7 @@ import {
 
 export interface IMoviesInterface extends Document {
   id: string;
-  movieId: number;
+  movieId: string;
   adult: boolean;
   backdropPath: string | null;
   belongsToCollection: [string];
@@ -44,7 +44,7 @@ const MoviesSchema = new Schema(
       type: String,
     },
     movieId: {
-      type: Number,
+      type: String,
       unique: true,
     },
     adult: {

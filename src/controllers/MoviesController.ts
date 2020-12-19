@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import CreateMovieService from '../services/CreateMovieService';
 import FindAllMoviesService from '../services/FindAllMoviesService';
+import FindOneMovieService from '../services/FindOneMovieService';
 
 class MoviesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -22,6 +23,19 @@ class MoviesController {
     const movies = await findAllMovies.execute();
 
     return response.json(movies);
+  }
+
+  public async findOne(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { movieId } = request.params;
+
+    const findOneMovie = new FindOneMovieService();
+
+    const movie = await findOneMovie.execute({ movieId });
+
+    return response.json(movie);
   }
 }
 
