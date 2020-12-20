@@ -4,7 +4,7 @@ import MoviesTranslationsController from '../controllers/MoviesTranslationsContr
 
 const moviesTranslationsController = new MoviesTranslationsController();
 
-const moviesTranslationsRouter = Router();
+const moviesTranslationsRouter = Router({ mergeParams: true });
 
 moviesTranslationsRouter.patch('/', moviesTranslationsController.update);
 

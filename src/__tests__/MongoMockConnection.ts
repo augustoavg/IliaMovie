@@ -1,19 +1,19 @@
 import mongoose, { Mongoose } from 'mongoose';
 
 class MongoMock {
-  private database!: Mongoose;
+  private database: Mongoose;
 
   async connect(): Promise<void> {
-    this.database = await mongoose.connect(
-      'mongodb+srv://augusto:augusto@augusto.9aslu.mongodb.net/IliaMoviesTests',
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        autoCreate: true,
-      },
-    );
+    if (!process.env.MONGO_URL) {
+      throw new Error('MongoDB server not initialized');
+    }
+
+    this.database = await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
   }
 
   disconnect(): Promise<void> {

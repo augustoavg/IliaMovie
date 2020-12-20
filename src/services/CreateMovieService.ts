@@ -1,6 +1,6 @@
+import findMovieDetails from '../shared/themoviedb/findMovieDetails';
 import AppError from '../shared/errors/AppError';
 import Movies, { IMoviesInterface } from '../schemas/Movies';
-import findMovieDetails from '../shared/themoviedb/findMovieDetails';
 
 interface IRequestDTO {
   movieId: number;

@@ -4,12 +4,12 @@ import MoviesController from '../controllers/MoviesController';
 import MoviesTranslationsRouter from './moviesTranslations.routes';
 
 const moviesController = new MoviesController();
-const moviesRouter = Router({ mergeParams: true });
+const moviesRouter = Router();
 
 moviesRouter.post(
   '/',
   celebrate({
-    [Segments.BODY]: { movieId: Joi.string().required().strict(true) },
+    [Segments.BODY]: { movieId: Joi.number().required().strict(true) },
   }),
   moviesController.create,
 );
