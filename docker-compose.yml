@@ -11,7 +11,7 @@ services:
       - .:/usr/src/app
     container_name: challange-api
     environment:
-      - MONGO_URL=challange-mongo
+      - MONGO_HOST=challange-mongo
     ports:
       - 3333:3333
     depends_on:
