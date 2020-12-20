@@ -79,11 +79,11 @@ no arquivo `.env.dev` e colar no arquivo recém-criado. Após isso, os dados do 
 
 
 Neste projeto, contém as seguintes variáveis de ambiente:
- - O nome do banco, MONGO_DB, que não é obrigatório, visto que já tem um valor default na configuração de conexão ao banco.
- - A porta do banco, MONGO_PORT, que não é obrigatório, visto que já tem um valor default na configuração de conexão ao banco.
- - O host do banco, MONGO_URL, que não é obrigatório, visto que já tem um valor default na configuração de conexão ao banco.
- - O usuário do banco que é obrigatório, MONGO_USERNAME.
- - A senha do banco que é obrigatório, MONGO_PASSWORD.
+ - O nome do banco, MONGO_DB.
+ - A porta do banco, MONGO_PORT.
+ - O host do banco, MONGO_HOST.
+ - O usuário do banco, MONGO_USERNAME.
+ - A senha do banco, MONGO_PASSWORD.
  - A chave de acesso da API The Movie, API_KEY.
 
 
