@@ -1,10 +1,11 @@
-import 'express-async-errors';
 import 'dotenv/config';
+import 'express-async-errors';
 import './shared/database';
 
 import express, { Request, Response, NextFunction } from 'express';
 
 import cors from 'cors';
+import { errors } from 'celebrate';
 import routes from './routes';
 import AppError from './shared/errors/AppError';
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(routes);
+app.use(errors());
 
 app.use((request: Request, response: Response, _: NextFunction) => {
   return response.status(404).send('Unable to find the requested resource!');

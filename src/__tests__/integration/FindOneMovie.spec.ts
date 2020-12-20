@@ -80,7 +80,9 @@ describe('Find one movie - Integration', () => {
       voteCount: mockMovie2.vote_count,
     });
 
-    const response = await request(app).get(`/movies/${movie1.id}`).send({});
+    const response = await request(app)
+      .get(`/movies/${movie1.movieId}`)
+      .send({});
 
     expect(response.status).toBe(200);
     expect(response.body.movieId).toBe(550);

@@ -57,11 +57,9 @@ class MoviesController {
   public async update(request: Request, response: Response): Promise<Response> {
     const { movieId } = request.params;
 
-    const id = parseInt(movieId, 10);
-
     const updateMovie = new UpdateMovieService();
 
-    const movie = await updateMovie.execute({ movieId: id });
+    const movie = await updateMovie.execute({ movieId: +movieId });
 
     return response.json(movie);
   }

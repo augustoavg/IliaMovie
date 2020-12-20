@@ -1,28 +1,21 @@
 import mongoose from 'mongoose';
 
-class Database {
-  public mongoConnection: Promise<mongoose.Mongoose>;
+import mongoConfig from '../config/mongo';
 
-  constructor() {
-    this.init();
-  }
+const mongoUserPass = mongoConfig.username
+  ? `${mongoConfig.username}:${mongoConfig.password}@`
+  : '';
 
-  private init(): void {
-    this.mongoConnection = mongoose
-      .connect(
-        'mongodb+srv://augusto:augusto@augusto.9aslu.mongodb.net/IliaMovies',
-        {
-          useNewUrlParser: true,
-          useFindAndModify: false,
-          useUnifiedTopology: true,
-          useCreateIndex: true,
-          autoCreate: true,
-        },
-      )
-      .then(() => {
-        console.log('🔆 Connection to database established.');
-      });
-  }
-}
-
-export default new Database();
+mongoose
+  .connect(
+    `mongodb://${mongoUserPass}${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.database}`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    },
+  )
+  .then(() => {
+    console.log('🔆 Connection to database established.');
+  });

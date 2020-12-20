@@ -115,7 +115,7 @@ describe('Create a new movie - Integration', () => {
   });
 
   it('should not be able to create a movie when movieId param is not a number', async () => {
-    const movieId = 550;
+    const movieId = '550';
 
     const response = await request(app).post(`/movies`).send({
       movieId,

@@ -1,4 +1,4 @@
-import { Schema, Document, model } from 'mongoose';
+import { Schema, Document, model, Model } from 'mongoose';
 
 import {
   IGenres,
@@ -8,8 +8,7 @@ import {
   ISpokenLanguages,
 } from '../shared/dtos/Movie.dto';
 
-export interface IMoviesInterface extends Document {
-  id: string;
+export interface IMoviesInterface {
   movieId: number;
   adult: boolean;
   backdropPath: string | null;
@@ -38,11 +37,12 @@ export interface IMoviesInterface extends Document {
   translations?: IMovieTranslation[];
 }
 
+export type MoviesDocument = Document & IMoviesInterface;
+
+type MoviesModel = Model<MoviesDocument>;
+
 const MoviesSchema = new Schema(
   {
-    id: {
-      type: String,
-    },
     movieId: {
       type: Number,
       unique: true,
@@ -130,6 +130,10 @@ const MoviesSchema = new Schema(
   },
 );
 
-const Movies = model<IMoviesInterface>('Movies', MoviesSchema, 'Movies');
+const Movies = model<MoviesDocument, MoviesModel>(
+  'Movies',
+  MoviesSchema,
+  'Movies',
+);
 
 export default Movies;

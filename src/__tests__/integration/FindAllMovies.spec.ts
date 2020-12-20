@@ -85,8 +85,6 @@ describe('Find all movies - Integration', () => {
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
     expect(response.body.length).toBe(2);
-    expect(response.body[0].movieId).toBe(200);
-    expect(response.body[1].movieId).toBe(550);
   });
 
   it('should be able to return an empty array when there are no movies', async () => {

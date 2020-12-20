@@ -23,7 +23,7 @@ export default async ({
 
   const { data } = response;
 
-  const movie: Omit<IMoviesInterface, 'id' | 'createdAt' | 'updatedAt'> = {
+  const movie: IMoviesInterface = {
     adult: data.adult,
     backdropPath: data.backdrop_path,
     belongsToCollection: data.belongs_to_collection,
