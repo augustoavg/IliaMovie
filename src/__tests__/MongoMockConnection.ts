@@ -4,11 +4,11 @@ class MongoMock {
   private database: Mongoose;
 
   async connect(): Promise<void> {
-    if (!process.env.MONGO_HOST) {
+    if (!process.env.MONGO_URL) {
       throw new Error('MongoDB server not initialized');
     }
 
-    this.database = await mongoose.connect(process.env.MONGO_URL || '', {
+    this.database = await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
