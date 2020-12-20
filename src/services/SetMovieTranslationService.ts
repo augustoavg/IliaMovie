@@ -33,7 +33,7 @@ class SetMovieTranslationService {
 
     movie.translations = data.translations;
 
-    movie.save();
+    await movie.save();
 
     return movie;
   }

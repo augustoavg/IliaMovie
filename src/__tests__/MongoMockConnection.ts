@@ -7,8 +7,9 @@ class MongoMock {
     if (!process.env.MONGO_URL) {
       throw new Error('MongoDB server not initialized');
     }
+    const conect = process.env.MONGO_URL.split('?')[0];
 
-    this.database = await mongoose.connect(process.env.MONGO_URL, {
+    this.database = await mongoose.connect(conect, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
