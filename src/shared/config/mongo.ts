@@ -11,5 +11,5 @@ export default {
   port: process.env.MONGO_PORT || 27017,
   username: process.env.MONGO_USERNAME,
   password: process.env.MONGO_PASSWORD,
-  database: process.env.MONGO_DB,
+  database: process.env.MONGO_DB || 'IliaChallange',
 } as MongoConfig;

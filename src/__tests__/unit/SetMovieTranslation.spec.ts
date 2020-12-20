@@ -21,6 +21,14 @@ describe('Set movie translation - Unity', () => {
     await MongoMock.disconnect();
   });
 
+  it('should not be able to set translation when movie doenst exist', async () => {
+    const setMovieTranslation = new SetMovieTranslationService();
+
+    await expect(
+      setMovieTranslation.execute({ movieId: 10 }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
   it('should be able to set translation on movie', async () => {
     const movieId = 550;
 
@@ -67,7 +75,15 @@ describe('Set movie translation - Unity', () => {
     expect(movie.translations).toBeDefined();
   });
 
-  it('should not be able to set translation when movie doenst exist', async () => {
+  it('should not be able to set translation when API_KEY is invalid', async () => {
+    const movieId = 550;
+
+    mock.onGet(`/${movieId}`).reply(401, {
+      status_message: 'Invalid API key: You must be granted a valid key.',
+      success: false,
+      status_code: 7,
+    });
+
     const setMovieTranslation = new SetMovieTranslationService();
 
     await expect(
@@ -81,22 +97,6 @@ describe('Set movie translation - Unity', () => {
     mock.onGet(`/${movieId}/translation`).reply(404, {
       status_message: 'The resource you requested could not be found.',
       status_code: 34,
-    });
-
-    const setMovieTranslation = new SetMovieTranslationService();
-
-    await expect(
-      setMovieTranslation.execute({ movieId: 10 }),
-    ).rejects.toBeInstanceOf(AppError);
-  });
-
-  it('should not be able to set translation when API_KEY is invalid', async () => {
-    const movieId = 550;
-
-    mock.onGet(`/${movieId}`).reply(401, {
-      status_message: 'Invalid API key: You must be granted a valid key.',
-      success: false,
-      status_code: 7,
     });
 
     const setMovieTranslation = new SetMovieTranslationService();
