@@ -6,16 +6,18 @@ const mongoUserPass = mongoConfig.username
   ? `${mongoConfig.username}:${mongoConfig.password}@`
   : '';
 
-mongoose
-  .connect(
-    `mongodb://${mongoUserPass}${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.database}`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    },
-  )
-  .then(() => {
-    console.log('🔆 Connection to database established.');
-  });
+if (!process.env.MONGO_URL) {
+  mongoose
+    .connect(
+      `mongodb://${mongoUserPass}${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.database}`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+      },
+    )
+    .then(() => {
+      console.log('🔆 Connection to database established.');
+    });
+}
